@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'onboarding_screen.dart'; // Pastikan file ini tersedia
+import 'login_screen.dart'; // Impor LoginScreen
 
 class StartScreen extends StatelessWidget {
   @override
@@ -64,7 +65,11 @@ class StartScreen extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    // Aksi tombol Login
+                    // Navigasi ke LoginScreen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF8875FF), // Warna ungu
@@ -84,7 +89,7 @@ class StartScreen extends StatelessWidget {
                 SizedBox(height: 10),
                 OutlinedButton(
                   onPressed: () {
-                    // Aksi tombol Create Account
+                    // Tambahkan aksi untuk tombol Create Account
                   },
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(color: Color(0xFF8875FF)), // Outline ungu
