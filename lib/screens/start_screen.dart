@@ -1,70 +1,104 @@
 import 'package:flutter/material.dart';
+import 'onboarding_screen.dart'; // Pastikan file ini tersedia
 
 class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      backgroundColor: Colors.black, // Background hitam
+      body: Stack(
         children: [
-          // Title and Description Centered
-          Padding(
-            padding: const EdgeInsets.only(top: 100),
+          // Tombol Back di bagian atas
+          Positioned(
+            top: 40,
+            left: 16,
+            child: GestureDetector(
+              onTap: () {
+                // Kembali ke OnboardingScreen
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => OnboardingScreen()),
+                );
+              },
+              child: Image.asset(
+                'img/back_icon.png',
+                width: 24,
+                height: 24,
+              ),
+            ),
+          ),
+          // Konten utama
+          Positioned(
+            top: 100, // Geser lebih ke atas
+            left: 16,
+            right: 16,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center, // Ensure text alignment is centered
               children: [
                 Text(
-                  "Welcome to TodoGul",
+                  'Welcome to TodoGul',
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 28,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
+                    color: Color(0xFF8875FF), // Warna ungu
                   ),
-                  textAlign: TextAlign.center, // Center the text
+                  textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 10),
                 Text(
-                  "Please login to your account or create new account to continue",
+                  'Please login to your account or create new account to continue',
                   style: TextStyle(
-                    color: Colors.grey,
                     fontSize: 16,
+                    color: Colors.white, // Warna teks putih
                   ),
-                  textAlign: TextAlign.center, // Center the text
+                  textAlign: TextAlign.center,
                 ),
               ],
             ),
           ),
-          // Buttons
-          Padding(
-            padding: const EdgeInsets.only(bottom: 40),
+          // Tombol di bagian bawah
+          Positioned(
+            bottom: 40,
+            left: 16,
+            right: 16,
             child: Column(
               children: [
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF8875FF),
-                    minimumSize: Size(300, 50),
-                  ),
                   onPressed: () {
-                    // Navigate to Login Screen
+                    // Aksi tombol Login
                   },
-                  child: Text(
-                    "LOGIN",
-                    style: TextStyle(color: Colors.white),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF8875FF), // Warna ungu
+                  ),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Center(
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                          color: Colors.white, // Warna teks putih
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 10),
                 OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: Color(0xFF8875FF)),
-                    minimumSize: Size(300, 50),
-                  ),
                   onPressed: () {
-                    // Navigate to Create Account Screen
+                    // Aksi tombol Create Account
                   },
-                  child: Text(
-                    "CREATE ACCOUNT",
-                    style: TextStyle(color: Color(0xFF8875FF)),
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: Color(0xFF8875FF)), // Outline ungu
+                  ),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Center(
+                      child: Text(
+                        'Create Account',
+                        style: TextStyle(
+                          color: Color(0xFF8875FF), // Warna teks ungu
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
