@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'onboarding_screen.dart'; // Pastikan file ini tersedia
-import 'login_screen.dart'; // Pastikan file ini tersedia
-import 'register_screen.dart'; // Pastikan file ini tersedia
+import 'onboarding_screen.dart'; 
+import 'login_screen.dart'; 
+import 'register_screen.dart'; 
 
 class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Background hitam
+      backgroundColor: Colors.black, 
       body: Stack(
         children: [
           // Tombol Back di bagian atas

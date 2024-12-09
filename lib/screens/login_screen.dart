@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart'; // Import ini diperlukan untuk TapGestureRecognizer
-import 'register_screen.dart'; // Pastikan file ini tersedia
+import 'package:flutter/gestures.dart'; 
+import 'register_screen.dart'; 
+import 'home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -23,7 +24,7 @@ class LoginScreen extends StatelessWidget {
                 height: 24,
               ),
             ),
-            SizedBox(height: 30), // Tambahkan jarak lebih besar
+            SizedBox(height: 30), 
             // Judul Login
             Text(
               'Login',
@@ -33,7 +34,7 @@ class LoginScreen extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 40), // Tambahkan jarak lebih besar
+            SizedBox(height: 40), 
             // Field Username
             TextField(
               decoration: InputDecoration(
@@ -48,7 +49,7 @@ class LoginScreen extends StatelessWidget {
               ),
               style: TextStyle(color: Colors.white),
             ),
-            SizedBox(height: 30), // Tambahkan jarak lebih besar
+            SizedBox(height: 30),
             // Field Password
             TextField(
               decoration: InputDecoration(
@@ -68,7 +69,10 @@ class LoginScreen extends StatelessWidget {
             // Tombol Login
             ElevatedButton(
               onPressed: () {
-                // Aksi tombol Login
+                Navigator.push(
+                 context,
+                 MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF8875FF),

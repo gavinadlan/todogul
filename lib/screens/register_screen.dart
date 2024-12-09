@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login_screen.dart'; // Pastikan file login_screen.dart tersedia
+import 'login_screen.dart'; 
 
 class RegisterScreen extends StatelessWidget {
   @override
@@ -22,7 +22,7 @@ class RegisterScreen extends StatelessWidget {
                 height: 24,
               ),
             ),
-            SizedBox(height: 30), // Tambahkan jarak lebih besar
+            SizedBox(height: 30), 
             // Judul Register
             Text(
               'Register',
@@ -32,7 +32,7 @@ class RegisterScreen extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 40), // Tambahkan jarak lebih besar
+            SizedBox(height: 40), 
             // Field Username
             TextField(
               decoration: InputDecoration(

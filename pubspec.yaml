@@ -64,6 +64,17 @@ flutter:
     - img/back_icon.png
     - img/apple_icon.png
     - img/google_icon.png
+    - img/jerison.jpeg
+    - img/icon_calender.png
+    - img/icon_calender2.png
+    - img/icon_home.png
+    - img/icon_home2.png
+    - img/icon_profile.png
+    - img/icon_profile2.png
+    - img/icon_clock.png
+    - img/icon_clock2.png
+    - img/empaty_tasks.png
+    
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
 
