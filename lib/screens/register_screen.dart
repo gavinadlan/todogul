@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart'; // Import ini diperlukan untuk TapGestureRecognizer
-import 'register_screen.dart'; // Pastikan file ini tersedia
+import 'login_screen.dart'; // Pastikan file login_screen.dart tersedia
 
-class LoginScreen extends StatelessWidget {
+class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +23,9 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 30), // Tambahkan jarak lebih besar
-            // Judul Login
+            // Judul Register
             Text(
-              'Login',
+              'Register',
               style: TextStyle(
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
@@ -48,7 +47,7 @@ class LoginScreen extends StatelessWidget {
               ),
               style: TextStyle(color: Colors.white),
             ),
-            SizedBox(height: 30), // Tambahkan jarak lebih besar
+            SizedBox(height: 20),
             // Field Password
             TextField(
               decoration: InputDecoration(
@@ -64,11 +63,27 @@ class LoginScreen extends StatelessWidget {
               obscureText: true,
               style: TextStyle(color: Colors.white),
             ),
+            SizedBox(height: 20),
+            // Field Confirm Password
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Confirm Password',
+                labelStyle: TextStyle(color: Colors.white),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Color(0xFF8875FF)),
+                ),
+              ),
+              obscureText: true,
+              style: TextStyle(color: Colors.white),
+            ),
             Spacer(),
-            // Tombol Login
+            // Tombol Register
             ElevatedButton(
               onPressed: () {
-                // Aksi tombol Login
+                // Aksi tombol Register
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF8875FF),
@@ -77,7 +92,7 @@ class LoginScreen extends StatelessWidget {
                 width: double.infinity,
                 child: Center(
                   child: Text(
-                    'Login',
+                    'Register',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -112,7 +127,7 @@ class LoginScreen extends StatelessWidget {
             // Tombol Login dengan Google
             OutlinedButton(
               onPressed: () {
-                // Aksi Login dengan Google
+                // Aksi Register dengan Google
               },
               style: OutlinedButton.styleFrom(
                 side: BorderSide(color: Color(0xFF8875FF)),
@@ -127,17 +142,17 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(width: 10),
                   Text(
-                    'Login with Google',
+                    'Register with Google',
                     style: TextStyle(color: Colors.white),
                   ),
                 ],
               ),
             ),
             SizedBox(height: 10),
-            // Tombol Login dengan Apple
+            // Tombol Register dengan Apple
             OutlinedButton(
               onPressed: () {
-                // Aksi Login dengan Apple
+                // Aksi Register dengan Apple
               },
               style: OutlinedButton.styleFrom(
                 side: BorderSide(color: Color(0xFF8875FF)),
@@ -152,36 +167,37 @@ class LoginScreen extends StatelessWidget {
                   ),
                   SizedBox(width: 10),
                   Text(
-                    'Login with Apple',
+                    'Register with Apple',
                     style: TextStyle(color: Colors.white),
                   ),
                 ],
               ),
             ),
             SizedBox(height: 20),
-            // Footer dengan Register
+            // Footer
             Center(
-              child: RichText(
-                text: TextSpan(
-                  text: "Don't have an account? ",
-                  style: TextStyle(color: Colors.white70),
-                  children: [
-                    TextSpan(
-                      text: 'Register',
-                      style: TextStyle(
-                        color: Color(0xFF8875FF),
-                        fontWeight: FontWeight.bold,
+              child: GestureDetector(
+                onTap: () {
+                  // Kembali ke LoginScreen
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                  );
+                },
+                child: RichText(
+                  text: TextSpan(
+                    text: "Already have an account? ",
+                    style: TextStyle(color: Colors.white70),
+                    children: [
+                      TextSpan(
+                        text: "Login",
+                        style: TextStyle(
+                          color: Color(0xFF8875FF),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          // Navigasi ke RegisterScreen
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => RegisterScreen()),
-                          );
-                        },
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
