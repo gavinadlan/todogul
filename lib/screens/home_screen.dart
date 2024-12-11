@@ -4,10 +4,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Background hitam
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.black, // Background AppBar hitam
-        elevation: 0, // Hilangkan bayangan
+        backgroundColor: Colors.black,
+        elevation: 0,
         title: Text(
           'Index',
           style: TextStyle(color: Colors.white),
@@ -15,13 +15,11 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           icon: Icon(Icons.menu, color: Colors.white),
-          onPressed: () {
-            // Tambahkan aksi untuk tombol menu
-          },
+          onPressed: () {},
         ),
         actions: [
           CircleAvatar(
-            backgroundImage: AssetImage('img/jerison.jpeg'), // Gambar profil
+            backgroundImage: AssetImage('img/jerison.jpeg'),
             radius: 16,
           ),
           SizedBox(width: 16),
@@ -30,7 +28,6 @@ class HomeScreen extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset(
               'img/empaty_tasks.png',
@@ -58,9 +55,230 @@ class HomeScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Aksi ketika tombol + ditekan
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            backgroundColor: Colors.black,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            ),
+            builder: (context) {
+              return Padding(
+                padding: EdgeInsets.only(
+                  left: 16,
+                  right: 16,
+                  top: 16,
+                  bottom: MediaQuery.of(context).viewInsets.bottom + 16,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Create to-do',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    // Title Field
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Title',
+                        labelStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white70),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    SizedBox(height: 16),
+                    // Description Field
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Description',
+                        labelStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white70),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      style: TextStyle(color: Colors.white),
+                      maxLines: 3,
+                    ),
+                    SizedBox(height: 16),
+                    // Repeat Dropdown
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: 'Repeat',
+                        labelStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white70),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      dropdownColor: Colors.black,
+                      value: 'No Repeat',
+                      onChanged: (value) {},
+                      items: ['No Repeat', 'Daily', 'Weekly', 'Monthly']
+                          .map((repeatOption) {
+                        return DropdownMenuItem<String>(
+                          value: repeatOption,
+                          child: Text(
+                            repeatOption,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    SizedBox(height: 16),
+                    // Days Selector
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: 'Day',
+                        labelStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white70),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      dropdownColor: Colors.black,
+                      value: 'Sunday',
+                      onChanged: (value) {},
+                      items: [
+                        'Sunday',
+                        'Monday',
+                        'Tuesday',
+                        'Wednesday',
+                        'Thursday',
+                        'Friday',
+                        'Saturday'
+                      ].map((day) {
+                        return DropdownMenuItem<String>(
+                          value: day,
+                          child: Text(
+                            day,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    SizedBox(height: 16),
+                    // Date and Time Picker
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2000),
+                                lastDate: DateTime(2100),
+                                builder: (context, child) {
+                                  return Theme(
+                                    data: ThemeData.dark(),
+                                    child: child!,
+                                  );
+                                },
+                              );
+                            },
+                            child: Text('Select Date'),
+                          ),
+                        ),
+                        SizedBox(width: 16),
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              await showTimePicker(
+                                context: context,
+                                initialTime: TimeOfDay.now(),
+                                builder: (context, child) {
+                                  return Theme(
+                                    data: ThemeData.dark(),
+                                    child: child!,
+                                  );
+                                },
+                              );
+                            },
+                            child: Text('Select Time'),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16),
+                    // Completion Status Dropdown
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: 'Completion Status',
+                        labelStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white70),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      dropdownColor: Colors.black,
+                      value: 'Incomplete',
+                      onChanged: (value) {},
+                      items: ['Completed', 'Incomplete'].map((status) {
+                        return DropdownMenuItem<String>(
+                          value: status,
+                          child: Text(
+                            status,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    SizedBox(height: 16),
+                    // Reminders Switch
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Reminders',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        Switch(
+                          value: false,
+                          onChanged: (value) {},
+                          activeColor: Color(0xFF8687E7),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16),
+                    // Add Task Button
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF8687E7),
+                      ),
+                      child: Center(
+                        child: Text('Add Task'),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
         },
-        backgroundColor: Color(0xFF8687E7), // Warna ungu
+        backgroundColor: Color(0xFF8687E7),
         child: Icon(Icons.add, color: Colors.white),
       ),
     );
