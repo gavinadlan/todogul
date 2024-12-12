@@ -13,9 +13,15 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.menu, color: Colors.white),
-          onPressed: () {},
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(Icons.menu, color: Colors.white),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();  // Open the Drawer when clicking the menu icon
+              },
+            );
+          },
         ),
         actions: [
           CircleAvatar(
@@ -280,6 +286,57 @@ class HomeScreen extends StatelessWidget {
         },
         backgroundColor: Color(0xFF8687E7),
         child: Icon(Icons.add, color: Colors.white),
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.black,
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text(
+                'Agus Setiawan',
+                style: TextStyle(color: Colors.white),
+              ),
+              accountEmail: Text(
+                'a.stwn03@gmail.com',
+                style: TextStyle(color: Colors.white70),
+              ),
+              currentAccountPicture: CircleAvatar(
+                backgroundImage: AssetImage('img/jerison.jpeg'),
+              ),
+              decoration: BoxDecoration(color: Colors.black),
+            ),
+            ListTile(
+              leading: Icon(Icons.edit, color: Colors.white),
+              title: Text(
+                'Edit Profile',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                // Handle profile editing here
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings, color: Colors.white),
+              title: Text(
+                'Settings',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                // Handle settings here
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout, color: Colors.white),
+              title: Text(
+                'Log Out',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                // Handle log out here
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
