@@ -25,8 +25,8 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.only(right: 16),
             child: Image.asset(
               'img/TODOGUL2.png',  // Logo Todogul tanpa lingkaran
-              width: 40,
-              height: 40,
+              width: 30,  // Ukuran logo diperkecil
+              height: 30,
             ),
           ),
         ],
@@ -34,9 +34,9 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Search bar di atas
+          // Search bar diperkecil dan diposisikan lebih dekat ke atas
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10), // Diperpendek jarak vertikalnya
             child: Container(
               padding: EdgeInsets.all(6),
               decoration: BoxDecoration(
@@ -330,8 +330,9 @@ class HomeScreen extends StatelessWidget {
                 'a.stwn03@gmail.com',
                 style: TextStyle(color: Colors.white70),
               ),
-              currentAccountPicture: ClipOval(
-                child: Image.asset('img/jerison.jpeg', width: 50, height: 50),
+              currentAccountPicture: CircleAvatar(
+                radius: 25,  // Menggunakan CircleAvatar untuk foto profil
+                backgroundImage: AssetImage('img/jerison.jpeg'),
               ),
               decoration: BoxDecoration(color: Colors.black),
             ),
