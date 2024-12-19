@@ -8,154 +8,74 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: TextField(
-            decoration: InputDecoration(
-              hintText: 'Search tasks...',
-              hintStyle: TextStyle(color: Colors.white54),
-              prefixIcon: Icon(Icons.search, color: Colors.white54),
-              filled: true,
-              fillColor: Colors.grey[900],
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30),
-                borderSide: BorderSide.none,
-              ),
-            ),
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
         centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.menu, color: Colors.white),
-          onPressed: () {
-            Scaffold.of(context).openDrawer();
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: Icon(Icons.menu, color: Colors.white),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();  // Open the Drawer when clicking the menu icon
+              },
+            );
           },
         ),
         actions: [
+          // Updated logo without circular background
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: Image.asset(
-              'img/TODOGUL2.png',
-              height: 32,
-              width: 32,
+              'img/TODOGUL2.png',  // Image without circle background
+              width: 24,
+              height: 24,
             ),
           ),
         ],
-      ),
-      drawer: Drawer(
-        backgroundColor: Colors.black,
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(50.0),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Color(0xFF8687E7),
+                color: Colors.transparent,
+                borderRadius: BorderRadius.circular(20),
               ),
-              child: Center(
-                child: Text(
-                  'Menu',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                  ),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Search tasks...',
+                  hintStyle: TextStyle(color: Colors.white),
+                  prefixIcon: Icon(Icons.search, color: Colors.white),
+                  border: InputBorder.none,
                 ),
               ),
             ),
-            ListTile(
-              leading: Icon(Icons.person, color: Colors.white),
-              title: Text(
-                'Edit Profile',
-                style: TextStyle(color: Colors.white),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.settings, color: Colors.white),
-              title: Text(
-                'Settings',
-                style: TextStyle(color: Colors.white),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.logout, color: Colors.white),
-              title: Text(
-                'Log Out',
-                style: TextStyle(color: Colors.white),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
+          ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Filter Buttons Row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF8687E7),
-                  ),
-                  child: Text('All'),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[800],
-                  ),
-                  child: Text('Important'),
-                ),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.grey[800],
-                  ),
-                  child: Text('Planned'),
-                ),
-              ],
+            Image.asset(
+              'img/empaty_tasks.png',
+              width: 200,
+              height: 200,
             ),
             SizedBox(height: 20),
-            // Empty Task Illustration
-            Expanded(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'img/empaty_tasks.png',
-                      width: 200,
-                      height: 200,
-                    ),
-                    SizedBox(height: 20),
-                    Text(
-                      'What do you want to do today?',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'Tap + to add your tasks',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.white70,
-                      ),
-                    ),
-                  ],
-                ),
+            Text(
+              'What do you want to do today?',
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Tap + to add your tasks',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.white70,
               ),
             ),
           ],
@@ -222,6 +142,153 @@ class HomeScreen extends StatelessWidget {
                       maxLines: 3,
                     ),
                     SizedBox(height: 16),
+                    // Repeat Dropdown
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: 'Repeat',
+                        labelStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white70),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      dropdownColor: Colors.black,
+                      value: 'No Repeat',
+                      onChanged: (value) {},
+                      items: ['No Repeat', 'Daily', 'Weekly', 'Monthly']
+                          .map((repeatOption) {
+                        return DropdownMenuItem<String>(
+                          value: repeatOption,
+                          child: Text(
+                            repeatOption,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    SizedBox(height: 16),
+                    // Days Selector
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: 'Day',
+                        labelStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white70),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      dropdownColor: Colors.black,
+                      value: 'Sunday',
+                      onChanged: (value) {},
+                      items: [
+                        'Sunday',
+                        'Monday',
+                        'Tuesday',
+                        'Wednesday',
+                        'Thursday',
+                        'Friday',
+                        'Saturday'
+                      ].map((day) {
+                        return DropdownMenuItem<String>(
+                          value: day,
+                          child: Text(
+                            day,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    SizedBox(height: 16),
+                    // Date and Time Picker
+                    Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(2000),
+                                lastDate: DateTime(2100),
+                                builder: (context, child) {
+                                  return Theme(
+                                    data: ThemeData.dark(),
+                                    child: child!,
+                                  );
+                                },
+                              );
+                            },
+                            child: Text('Select Date'),
+                          ),
+                        ),
+                        SizedBox(width: 16),
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              await showTimePicker(
+                                context: context,
+                                initialTime: TimeOfDay.now(),
+                                builder: (context, child) {
+                                  return Theme(
+                                    data: ThemeData.dark(),
+                                    child: child!,
+                                  );
+                                },
+                              );
+                            },
+                            child: Text('Select Time'),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16),
+                    // Completion Status Dropdown
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: 'Completion Status',
+                        labelStyle: TextStyle(color: Colors.white),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white70),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white),
+                        ),
+                      ),
+                      dropdownColor: Colors.black,
+                      value: 'Incomplete',
+                      onChanged: (value) {},
+                      items: ['Completed', 'Incomplete'].map((status) {
+                        return DropdownMenuItem<String>(
+                          value: status,
+                          child: Text(
+                            status,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    SizedBox(height: 16),
+                    // Reminders Switch
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Reminders',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        Switch(
+                          value: false,
+                          onChanged: (value) {},
+                          activeColor: Color(0xFF8687E7),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 16),
+                    // Add Task Button
                     ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context);
@@ -241,6 +308,55 @@ class HomeScreen extends StatelessWidget {
         },
         backgroundColor: Color(0xFF8687E7),
         child: Icon(Icons.add, color: Colors.white),
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.black,
+        child: ListView(
+          children: [
+            UserAccountsDrawerHeader(
+              accountName: Text(
+                'Agus Setiawan',
+                style: TextStyle(color: Colors.white),
+              ),
+              accountEmail: Text(
+                'a.stwn03@gmail.com',
+                style: TextStyle(color: Colors.white70),
+              ),
+              currentAccountPicture: Image.asset('img/TODOGUL2.png', width: 50, height: 50),  // Updated image without circle
+              decoration: BoxDecoration(color: Colors.black),
+            ),
+            ListTile(
+              leading: Icon(Icons.edit, color: Colors.white),
+              title: Text(
+                'Edit Profile',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                // Handle profile editing here
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings, color: Colors.white),
+              title: Text(
+                'Settings',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                // Handle settings here
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout, color: Colors.white),
+              title: Text(
+                'Log Out',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                // Handle log out here
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
