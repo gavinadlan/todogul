@@ -1,7 +1,9 @@
-allprojects {
+allprojects { 
     repositories {
         google()
         mavenCentral()
+        // Tambahkan jika diperlukan
+        maven { url 'https://jitpack.io' }
     }
 }
 
