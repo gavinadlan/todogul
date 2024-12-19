@@ -8,7 +8,7 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
-        centerTitle: true,
+        centerTitle: false,
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -20,66 +20,74 @@ class HomeScreen extends StatelessWidget {
           },
         ),
         actions: [
-          // Updated logo without circular background
+          // Logo Todogul diletakkan di pojok kanan
           Padding(
-            padding: const EdgeInsets.only(right: 16.0),
+            padding: const EdgeInsets.only(right: 16),
             child: Image.asset(
-              'img/TODOGUL2.png',  // Image without circle background
-              width: 24,
-              height: 24,
+              'img/TODOGUL2.png',  // Logo Todogul tanpa lingkaran
+              width: 40,
+              height: 40,
             ),
           ),
         ],
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(50.0),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Search bar di atas
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
             child: Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(8),
+              padding: EdgeInsets.all(6),
               decoration: BoxDecoration(
                 color: Colors.transparent,
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: Colors.white, width: 1),
               ),
               child: TextField(
                 decoration: InputDecoration(
                   hintText: 'Search tasks...',
-                  hintStyle: TextStyle(color: Colors.white),
-                  prefixIcon: Icon(Icons.search, color: Colors.white),
+                  hintStyle: TextStyle(color: Colors.white, fontSize: 14),
+                  prefixIcon: Icon(Icons.search, color: Colors.white, size: 20),
                   border: InputBorder.none,
                 ),
               ),
             ),
           ),
-        ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'img/empaty_tasks.png',
-              width: 200,
-              height: 200,
+          SizedBox(height: 20),
+          // Gambar empty_tasks.png
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 40),
+              child: Image.asset(
+                'img/empaty_tasks.png',  // Pastikan gambar ada di folder assets
+                width: 200,  // Ukuran gambar dapat disesuaikan
+                height: 200,
+              ),
             ),
-            SizedBox(height: 20),
-            Text(
+          ),
+          SizedBox(height: 20),
+          // Text di bawah gambar
+          Center(
+            child: Text(
               'What do you want to do today?',
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 10),
-            Text(
+          ),
+          SizedBox(height: 10),
+          Center(
+            child: Text(
               'Tap + to add your tasks',
               style: TextStyle(
                 fontSize: 14,
                 color: Colors.white70,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -322,7 +330,9 @@ class HomeScreen extends StatelessWidget {
                 'a.stwn03@gmail.com',
                 style: TextStyle(color: Colors.white70),
               ),
-              currentAccountPicture: Image.asset('img/TODOGUL2.png', width: 50, height: 50),  // Updated image without circle
+              currentAccountPicture: ClipOval(
+                child: Image.asset('img/jerison.jpeg', width: 50, height: 50),
+              ),
               decoration: BoxDecoration(color: Colors.black),
             ),
             ListTile(
