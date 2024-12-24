@@ -37,9 +37,26 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Search Bar with improved styling
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-            child: CustomTextField(hintText: 'Search tasks...'),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white24, // semi-transparent background
+                borderRadius: BorderRadius.circular(30),
+                border: Border.all(color: Colors.white30),
+              ),
+              child: TextField(
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search, color: Colors.white),
+                  hintText: 'Search tasks...',
+                  hintStyle: TextStyle(color: Colors.white70),
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                ),
+              ),
+            ),
           ),
           SizedBox(height: 20),
           Center(
