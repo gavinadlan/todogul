@@ -1,8 +1,18 @@
-allprojects { 
+buildscript {
+    repositories {
+        google()  // Pastikan google() ada di sini
+        mavenCentral()
+    }
+    dependencies {
+        // Pastikan Anda menggunakan versi yang sesuai
+        classpath 'com.google.gms:google-services:4.4.2' // Versi plugin Google Services
+    }
+}
+
+allprojects {
     repositories {
         google()
         mavenCentral()
-        // Tambahkan jika diperlukan
         maven { url 'https://jitpack.io' }
     }
 }
