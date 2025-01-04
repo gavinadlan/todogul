@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 
-class IntroScreen extends StatelessWidget {
+class IntroScreen extends StatefulWidget {
+  @override
+  _IntroScreenState createState() => _IntroScreenState();
+}
+
+class _IntroScreenState extends State<IntroScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // Navigasi otomatis setelah 2 detik
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.pushReplacementNamed(context, '/onboarding');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,17 +37,6 @@ class IntroScreen extends StatelessWidget {
                 fontSize: 32,
                 fontWeight: FontWeight.bold,
               ),
-            ),
-            SizedBox(height: 40),
-            // Get Started Button
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF8875FF),
-              ),
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, '/onboarding');
-              },
-              child: Text("Get Started"),
             ),
           ],
         ),
