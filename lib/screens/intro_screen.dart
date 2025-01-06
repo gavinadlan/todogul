@@ -10,7 +10,7 @@ class _IntroScreenState extends State<IntroScreen> {
   void initState() {
     super.initState();
     // Navigasi otomatis setelah 2 detik
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 4), () {
       Navigator.pushReplacementNamed(context, '/onboarding');
     });
   }
