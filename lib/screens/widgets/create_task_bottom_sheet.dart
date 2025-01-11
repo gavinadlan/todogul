@@ -32,15 +32,34 @@ class _CreateTaskBottomSheetState extends State<CreateTaskBottomSheet> {
             ),
           ),
           SizedBox(height: 16),
-          CustomTextField(hintText: 'Enter Title', labelText: 'Title'),
+          CustomTextField(
+            hintText: 'Enter Title',
+            labelText: 'Title',
+          ),
           SizedBox(height: 16),
-          CustomTextField(hintText: 'Enter Description', labelText: 'Description', maxLines: 3),
+          CustomTextField(
+            hintText: 'Enter Description',
+            labelText: 'Description',
+            maxLines: 3,
+          ),
           SizedBox(height: 16),
-          CustomDropdown(labelText: 'Repeat', options: ['No Repeat', 'Daily', 'Weekly', 'Monthly']),
+          CustomDropdown(
+            labelText: 'Repeat',
+            options: ['No Repeat', 'Daily', 'Weekly', 'Monthly'],
+          ),
           SizedBox(height: 16),
-          CustomDropdown(labelText: 'Day', options: [
-            'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
-          ]),
+          CustomDropdown(
+            labelText: 'Day',
+            options: [
+              'Sunday',
+              'Monday',
+              'Tuesday',
+              'Wednesday',
+              'Thursday',
+              'Friday',
+              'Saturday'
+            ],
+          ),
           SizedBox(height: 16),
           CustomDropdown(
             labelText: 'Reminder',
@@ -116,11 +135,13 @@ class _CreateTaskBottomSheetState extends State<CreateTaskBottomSheet> {
               selectedColor: Colors.black,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Text('Incomplete'),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Text('Completed'),
                 ),
               ],

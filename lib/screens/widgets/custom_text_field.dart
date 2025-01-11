@@ -11,6 +11,8 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       maxLines: maxLines,
+      style:
+          TextStyle(color: Colors.white), // Menambahkan style untuk teks input
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(color: Colors.white, fontSize: 14),
