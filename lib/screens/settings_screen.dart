@@ -14,18 +14,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   // Fungsi untuk menyimpan perubahan
   void _saveChanges() {
-    // Logika untuk menyimpan perubahan password
     String currentPassword = _currentPasswordController.text;
     String newPassword = _newPasswordController.text;
     String confirmPassword = _confirmPasswordController.text;
 
     if (newPassword == confirmPassword) {
-      // Simpan perubahan password jika keduanya cocok
-      print('Password berhasil diubah');
-      // Anda bisa menambahkan logika untuk memverifikasi dan menyimpan password di backend di sini
+      // Simpan perubahan password jika cocok
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Password berhasil diubah')),
+      );
     } else {
-      // Tampilkan error jika password baru dan konfirmasi tidak cocok
-      print('Password baru dan konfirmasi password tidak cocok');
+      // Tampilkan error jika tidak cocok
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Password baru dan konfirmasi tidak cocok')),
+      );
     }
   }
 
@@ -34,73 +36,75 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Settings',
+          'Pengaturan',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.black.withOpacity(0.8),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       backgroundColor: Colors.black,
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Ganti Password',
-              style: TextStyle(color: Colors.white, fontSize: 18),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
-            TextField(
-              controller: _currentPasswordController,
-              obscureText: true,
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                labelText: 'Password Saat Ini',
-                labelStyle: TextStyle(color: Colors.white70),
-                filled: true,
-                fillColor: Colors.grey[800],
-                border: OutlineInputBorder(),
-              ),
-            ),
+            _buildPasswordField(
+                'Password Saat Ini', _currentPasswordController),
             SizedBox(height: 20),
-            TextField(
-              controller: _newPasswordController,
-              obscureText: true,
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                labelText: 'Password Baru',
-                labelStyle: TextStyle(color: Colors.white70),
-                filled: true,
-                fillColor: Colors.grey[800],
-                border: OutlineInputBorder(),
-              ),
-            ),
+            _buildPasswordField('Password Baru', _newPasswordController),
             SizedBox(height: 20),
-            TextField(
-              controller: _confirmPasswordController,
-              obscureText: true,
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                labelText: 'Konfirmasi Password Baru',
-                labelStyle: TextStyle(color: Colors.white70),
-                filled: true,
-                fillColor: Colors.grey[800],
-                border: OutlineInputBorder(),
-              ),
-            ),
+            _buildPasswordField(
+                'Konfirmasi Password Baru', _confirmPasswordController),
             SizedBox(height: 40),
-            ElevatedButton(
-              onPressed: _saveChanges,
-              child: Text(
-                'Simpan Perubahan',
-                style: TextStyle(color: Colors.white),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.redAccent,
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: _saveChanges,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF8687E7),
+                  padding: EdgeInsets.symmetric(vertical: 15),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+                child: Text(
+                  'Simpan Perubahan',
+                  style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  // Widget untuk membuat TextField password
+  Widget _buildPasswordField(String label, TextEditingController controller) {
+    return TextField(
+      controller: controller,
+      obscureText: true,
+      style: TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(color: Colors.white70),
+        filled: true,
+        fillColor: Colors.grey[850],
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide.none,
+        ),
+        prefixIcon: Icon(Icons.lock, color: Colors.white70),
       ),
     );
   }

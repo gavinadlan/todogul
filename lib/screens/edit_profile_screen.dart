@@ -22,10 +22,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       appBar: AppBar(
         title: Text(
           'Edit Profile',
-          style: TextStyle(color: Colors.white), // Change text color to white
+          style: TextStyle(color: Colors.white),
         ),
-        backgroundColor:
-            Colors.black.withOpacity(0.8), // Slightly lighter black
+        backgroundColor: Colors.black.withOpacity(0.8),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       backgroundColor: Colors.black, // Background color of the screen
       body: Padding(
@@ -92,11 +92,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               onPressed: _saveChanges,
               child: Text(
                 'Simpan',
-                style: TextStyle(
-                    color: Colors.white), // White text color for the button
+                style: TextStyle(color: Colors.white),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.redAccent, // Red button color
+                backgroundColor: Color(0xFF8687E7),
               ),
             ),
           ],
